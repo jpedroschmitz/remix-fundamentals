@@ -31,7 +31,7 @@ export function HomepageHero({ showTitle = true }) {
                   Ir para CodersClub
                 </a>
                 <Link
-                  to="/article-new"
+                  to="/articles/new"
                   className="text-sm font-medium hover:text-primary"
                 >
                   Novo artigo

@@ -10,8 +10,8 @@ export default function Index() {
       <Container className="py-10">
         <Breadcrumb>
           <BreadcrumbItem to="/">Página Inicial</BreadcrumbItem>
-          <BreadcrumbItem to="/collection">Collections</BreadcrumbItem>
-          <BreadcrumbItem to="/article">Article</BreadcrumbItem>
+          <BreadcrumbItem to="/collections/1">Collections</BreadcrumbItem>
+          <BreadcrumbItem to="/articles/1">Article</BreadcrumbItem>
         </Breadcrumb>
       </Container>
 

@@ -10,7 +10,7 @@ export default function Index() {
       <Container className="py-10 space-y-8">
         {[...Array(5)].map((_, index) => (
           <Link
-            to="/collection"
+            to="/collections/1"
             className="w-full bg-slate-50 shadow rounded-sm p-6 block"
             key={index}
           >

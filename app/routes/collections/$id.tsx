@@ -11,13 +11,12 @@ export default function Index() {
       <Container className="py-10 space-y-8">
         <Breadcrumb>
           <BreadcrumbItem to="/">Página Inicial</BreadcrumbItem>
-          <BreadcrumbItem to="/collection">Collections</BreadcrumbItem>
-          <BreadcrumbItem to="/article">Article</BreadcrumbItem>
+          <BreadcrumbItem to="/collections/1">Collections</BreadcrumbItem>
         </Breadcrumb>
 
         {[...Array(5)].map((_, index) => (
           <Link
-            to="/article"
+            to="/articles/1"
             className="w-full bg-slate-50 shadow rounded-sm p-6 block"
             key={index}
           >
