@@ -6,6 +6,7 @@
     "build:css": "tailwindcss -m -i ./styles/app.css -o app/styles/app.css",
     "dev": "concurrently \"npm run dev:css\" \"remix dev\"",
     "dev:css": "tailwindcss -w -i ./styles/app.css -o app/styles/app.css",
+    "prisma:seed": "ts-node --require tsconfig-paths/register prisma/seed.ts",
     "start": "remix-serve build"
   },
   "dependencies": {
@@ -23,13 +24,18 @@
   "devDependencies": {
     "@remix-run/dev": "^1.6.8",
     "@remix-run/eslint-config": "^1.6.8",
+    "@types/node": "^18.7.4",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "eslint": "^8.20.0",
     "prisma": "^4.2.1",
+    "ts-node": "^10.9.1",
     "typescript": "^4.7.4"
   },
   "engines": {
     "node": ">=14"
+  },
+  "prisma": {
+    "seed": "npm run seed"
   }
 }
