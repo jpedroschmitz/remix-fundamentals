@@ -1,12 +1,9 @@
 import { Container } from "~/components/container";
 import { Breadcrumb, BreadcrumbItem } from "~/components/breadcrumb";
-import { HomepageHero } from "~/components/hero";
 
 export default function Index() {
   return (
-    <div>
-      <HomepageHero showTitle={false} />
-
+    <>
       <Container className="py-10">
         <Breadcrumb>
           <BreadcrumbItem to="/">Página Inicial</BreadcrumbItem>
@@ -48,6 +45,6 @@ export default function Index() {
           </div>
         </form>
       </Container>
-    </div>
+    </>
   );
 }

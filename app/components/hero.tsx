@@ -2,7 +2,7 @@ import { Link } from "@remix-run/react";
 import { SearchIcon, ExternalLinkIcon } from "@heroicons/react/solid";
 import { Container } from "./container";
 
-export function HomepageHero({ showTitle = true }) {
+export function Hero({ showTitle = true }) {
   return (
     <div className="bg-slate-50">
       <Container>
