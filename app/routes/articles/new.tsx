@@ -1,7 +1,25 @@
 import { Container } from "~/components/container";
 import { Breadcrumb, BreadcrumbItem } from "~/components/breadcrumb";
+import type { LoaderArgs } from "@remix-run/node";
+import { prisma } from "~/db.server";
+import { useLoaderData } from "@remix-run/react";
+
+export async function loader(args: LoaderArgs) {
+  const collections = await prisma.collection.findMany({
+    select: {
+      id: true,
+      name: true,
+    },
+  });
+
+  return {
+    collections,
+  };
+}
 
 export default function Index() {
+  const { collections } = useLoaderData<typeof loader>();
+
   return (
     <>
       <Container className="py-10">
@@ -17,23 +35,31 @@ export default function Index() {
         <form className="flex flex-col space-y-6 bg-slate-50 p-6 rounded-md">
           <input
             type="text"
+            name="title"
             placeholder="Título"
-            className="block w-full px-4 rounded-md py-3 text-slate-400 bg-white ring-1 ring-slate-200 transition-colors text-lg focus:text-slate-900 focus:outline-none"
+            className="block w-full px-4 rounded-md py-3 text-slate-900 placeholder:text-slate-400 bg-white ring-1 ring-slate-200 transition-colors text-lg focus:text-slate-900 focus:outline-none"
           />
           <input
             type="text"
+            name="description"
             placeholder="Description"
-            className="block w-full px-4 rounded-md py-3 text-slate-400 bg-white ring-1 ring-slate-200 transition-colors text-lg focus:text-slate-900 focus:outline-none"
+            className="block w-full px-4 rounded-md py-3 text-slate-900 placeholder:text-slate-400 bg-white ring-1 ring-slate-200 transition-colors text-lg focus:text-slate-900 focus:outline-none"
           />
           <textarea
+            name="content"
             placeholder="Content"
-            className="block w-full px-4 rounded-md py-3 text-slate-400 bg-white ring-1 ring-slate-200 transition-colors text-lg focus:text-slate-900 focus:outline-none"
+            className="block w-full px-4 rounded-md py-3 text-slate-900 placeholder:text-slate-400 bg-white ring-1 ring-slate-200 transition-colors text-lg focus:text-slate-900 focus:outline-none"
           />
           <select
             name="collectionId"
-            className="block w-full px-4 rounded-md py-3 text-slate-400 bg-white ring-1 ring-slate-200 transition-colors text-lg focus:text-slate-900 focus:outline-none"
+            className="block w-full px-4 rounded-md py-3 text-slate-900 placeholder:text-slate-400 bg-white ring-1 ring-slate-200 transition-colors text-lg focus:text-slate-900 focus:outline-none"
           >
             <option value="">Selecione uma collection</option>
+            {collections.map((collection) => (
+              <option key={collection.id} value={collection.id}>
+                {collection.name}
+              </option>
+            ))}
           </select>
           <div>
             <button
