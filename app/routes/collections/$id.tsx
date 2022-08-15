@@ -1,6 +1,6 @@
 import type { LoaderArgs } from "@remix-run/node";
 import { Breadcrumb, BreadcrumbItem } from "~/components/breadcrumb";
-import { Link, useLoaderData } from "@remix-run/react";
+import { Link, useCatch, useLoaderData } from "@remix-run/react";
 import { Container } from "~/components/container";
 import { prisma } from "~/db.server";
 
@@ -21,6 +21,12 @@ export async function loader({ params }: LoaderArgs) {
       },
     },
   });
+
+  if (!collection) {
+    throw new Response("Not found", {
+      status: 404,
+    });
+  }
 
   return {
     collection,
@@ -51,4 +57,24 @@ export default function Index() {
       ))}
     </Container>
   );
+}
+
+export function ErrorBoundary({ error }: { error: Error }) {
+  console.error(error);
+
+  return (
+    <Container>
+      Um erro inesperado aconteceu na página de collections: {error.message}
+    </Container>
+  );
+}
+
+export function CatchBoundary() {
+  const caught = useCatch();
+
+  if (caught.status === 404) {
+    return <Container>Collection not found</Container>;
+  }
+
+  throw new Error(`Unexpected caught response with status: ${caught.status}`);
 }
